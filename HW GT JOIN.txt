@@ -1,0 +1,39 @@
+select t1.sname, t2.SNAME bossname
+from sellers t1
+left join sellers t2
+on t1.bossid = t2.sellid;
+
+select t1.cname, t2.amt
+from customers t1
+inner join orders t2
+on t1.cust_id = t2.custid
+where t2.amt > 1000;
+
+select t1.cname, t3.sname
+from customers t1
+inner join orders t2
+on t1.cust_id = t2.custid
+inner join sellers t3
+on t2.sell_id = t3.sellid and t1.city <> t3.city;
+ 
+select t1.sname, t1.comm - t2.comm difference
+from sellers t1
+left join sellers t2
+on t1.bossid = t2.sellid;
+
+select t1.cname, t3.sname, t3.city
+from customers t1
+inner join orders t2
+on t1.cust_id = t2.custid
+inner join sellers t3
+on t2.sell_id = t3.sellid and t1.city = t3.city;
+
+select t1.cname, t2.orderid
+from customers t1 
+left join orders t2
+on t1.cust_id = t2.custid
+union
+select t1.cname, t2.orderid
+from customers t1 
+right join orders t2
+on t1.cust_id = t2.custid;
